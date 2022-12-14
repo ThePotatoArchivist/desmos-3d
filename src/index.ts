@@ -5,7 +5,7 @@ fs.readFile('./in.txt', 'utf8', (err: any, data: string): void => {
         .split('\n') // Split by lines
         .filter(e => e[0] != '#') // Remove commented
         .map(e => e.split(' ')) // Split by spaces
-        .filter(e => e.length > 2); // Remove any lines with one item
+        .filter(e => e.length > 1); // Remove any lines with one item
 
     let pointsList = points.flat(1);
 
