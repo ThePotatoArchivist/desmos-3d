@@ -17,9 +17,11 @@ fs.readFile('./in.txt', 'utf8', (err: any, data: string): void => {
         .filter(e => e.length > 1); // Remove any lines with one item
     
     let colors = points.map(e => e.pop() ?? ''); // Extract colors
-    let rgbColors = colors
+    let colorPalette = [...new Set(colors)]; // Unique colors
+    let rgbColorPalette = colorPalette
         .map(hexToRgb)
         .map(e => e == null ? 'rgb\\left(0,0,0\\right)' : `rgb\\left(${e.r},${e.g},${e.b}\\right)`);
+    let colorList = colors.map(e => `C_{s}\\left[${colorPalette.indexOf(e) + 1}\\right]`);
 
     let pointsList = points.flat(1);
 
@@ -30,5 +32,6 @@ fs.readFile('./in.txt', 'utf8', (err: any, data: string): void => {
 
     console.log('P_{s}=\\left[' + pointsList.join(',') + '\\right]');
     console.log('P_{is}=\\left[' + pointIndices.join(',') + '\\right]');
-    console.log('C=\\left[' + rgbColors.join(',') + '\\right]');
+    console.log('C_{s}=\\left[' + rgbColorPalette.join(',') + '\\right]');
+    console.log('C=\\left[' + colorList.join(',') + '\\right]');
 });
