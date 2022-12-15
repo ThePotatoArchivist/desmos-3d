@@ -4,7 +4,9 @@
   "description": "Processes lists of 3D polygons into a desmos-readable format",
   "main": "index.ts",
   "scripts": {
-    "start": "ts-node src/index.ts"
+    "test": "ts-node src/index.ts",
+    "build": "tsc",
+    "start": "node build/index.js"
   },
   "author": "Josiah Fu josiahfu@gmail.com",
   "license": "MIT",

@@ -1,11 +1,25 @@
 import fs from 'fs';
 
+function hexToRgb(hex: string): {r: number, g: number, b: number} | null {
+  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result ? {
+    r: parseInt(result[1], 16),
+    g: parseInt(result[2], 16),
+    b: parseInt(result[3], 16)
+  } : null;
+}
+
 fs.readFile('./in.txt', 'utf8', (err: any, data: string): void => {
     let points = data
         .split('\n') // Split by lines
         .filter(e => e[0] != '#') // Remove commented
         .map(e => e.split(' ')) // Split by spaces
         .filter(e => e.length > 1); // Remove any lines with one item
+    
+    let colors = points.map(e => e.pop() ?? ''); // Extract colors
+    let rgbColors = colors
+        .map(hexToRgb)
+        .map(e => e == null ? 'rgb\\left(0,0,0\\right)' : `rgb\\left(${e.r},${e.g},${e.b}\\right)`);
 
     let pointsList = points.flat(1);
 
@@ -16,4 +30,5 @@ fs.readFile('./in.txt', 'utf8', (err: any, data: string): void => {
 
     console.log('P_{s}=\\left[' + pointsList.join(',') + '\\right]');
     console.log('P_{is}=\\left[' + pointIndices.join(',') + '\\right]');
+    console.log('C=\\left[' + rgbColors.join(',') + '\\right]');
 });
