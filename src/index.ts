@@ -27,10 +27,9 @@ function genOutput(): void {
         let colors = points.map(e => e.pop() ?? ''); // Extract colors
         let colorPalette = [...new Set(colors)]; // Unique colors
         let rgbColorPalette = colorPalette
-            .map(hexToRgb)
-            .map(e => e == null ? 'rgb\\left(0,0,0\\right)' : `rgb\\left(${e.r},${e.g},${e.b}\\right)`);
-        let colorPaletteList = colorPalette.length > 5;
-        let colorList = colors.map(e => colorPaletteList ? `C_{s}\\left[${colorPalette.indexOf(e) + 1}\\right]` : `C_{${colorPalette.indexOf(e) + 1}}`);
+            .map(hexToRgb);
+            // .map(e => e == null ? 'rgb\\left(0,0,0\\right)' : `rgb\\left(${e.r},${e.g},${e.b}\\right)`);
+        let colorList = colors.map(e => colorPalette.indexOf(e) + 1);
 
         let pointsList = points.flat(1);
 
@@ -41,9 +40,9 @@ function genOutput(): void {
 
         console.log('P_{s}=\\left[' + pointsList.join(',') + '\\right]');
         console.log('P_{is}=\\left[' + pointIndices.join(',') + '\\right]');
-        console.log(colorPaletteList ? 
-            'C_{s}=\\left[' + rgbColorPalette.join(',') + '\\right]' :
-            rgbColorPalette.map((e, i) => `C_{${i}}=${e}`));
+        console.log(`C_{r}=\\left[${rgbColorPalette.map(e => e?.r ?? 0).join(',')}\\right]`);
+        console.log(`C_{g}=\\left[${rgbColorPalette.map(e => e?.g ?? 0).join(',')}\\right]`);
+        console.log(`C_{b}=\\left[${rgbColorPalette.map(e => e?.b ?? 0).join(',')}\\right]`);
         console.log('C=\\left[' + colorList.join(',') + '\\right]');
         console.log(''); // Separate outputs with a space
     });
