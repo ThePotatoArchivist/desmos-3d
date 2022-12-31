@@ -24,6 +24,8 @@ function genOutput(): void {
             .map(e => e.split(' ')) // Split by spaces
             .filter(e => e.length > 1); // Remove any lines with one item
 
+        let opacities = points.map(e => e.pop() ?? ''); // Extract opacities
+
         let colors = points.map(e => e.pop() ?? ''); // Extract colors
         let colorPalette = [...new Set(colors)]; // Unique colors
         let rgbColorPalette = colorPalette
@@ -44,6 +46,7 @@ function genOutput(): void {
         console.log(`C_{g}=\\left[${rgbColorPalette.map(e => e?.g ?? 0).join(',')}\\right]`);
         console.log(`C_{b}=\\left[${rgbColorPalette.map(e => e?.b ?? 0).join(',')}\\right]`);
         console.log('C=\\left[' + colorList.join(',') + '\\right]');
+        console.log('O_{p}=\\left[' + opacities.join(',') + '\\right]');
         console.log(''); // Separate outputs with a space
     });
 }
