@@ -3,7 +3,7 @@
 A converter I created for my Desmos 3D engine:  
 https://www.desmos.com/calculator/lpe1hwpbvx
 
-**UPDATE:** Instead of cloning and running the code, youc an also use the web processor at josiahfu.github.io/desmos-3d
+**UPDATE:** Instead of cloning and running the code, youc an also use the web processor at https://josiahfu.github.io/desmos-3d
 
 ## Syntax
 
