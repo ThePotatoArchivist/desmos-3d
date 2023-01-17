@@ -40,14 +40,13 @@ function genOutput(data: string): string {
 
     let output = '';
 
-    output += 'P_{s}=\\left[' + pointsList.join(',') + '\\right]';
-    output += 'P_{is}=\\left[' + pointIndices.join(',') + '\\right]';
-    output += `C_{r}=\\left[${rgbColorPalette.map(e => e?.r ?? 0).join(',')}\\right]`;
-    output += `C_{g}=\\left[${rgbColorPalette.map(e => e?.g ?? 0).join(',')}\\right]`;
-    output += `C_{b}=\\left[${rgbColorPalette.map(e => e?.b ?? 0).join(',')}\\right]`;
-    output += 'C=\\left[' + colorList.join(',') + '\\right]';
-    output += 'O_{p}=\\left[' + opacities.join(',') + '\\right]';
-    output += ''; // Separate outputs with a space
+    output += 'P_{s}=\\left[' + pointsList.join(',') + '\\right]\n';
+    output += 'P_{is}=\\left[' + pointIndices.join(',') + '\\right]\n';
+    output += `C_{r}=\\left[${rgbColorPalette.map(e => e?.r ?? 0).join(',')}\\right]\n`;
+    output += `C_{g}=\\left[${rgbColorPalette.map(e => e?.g ?? 0).join(',')}\\right]\n`;
+    output += `C_{b}=\\left[${rgbColorPalette.map(e => e?.b ?? 0).join(',')}\\right]\n`;
+    output += 'C=\\left[' + colorList.join(',') + '\\right]\n';
+    output += 'O_{p}=\\left[' + opacities.join(',') + '\\right]\n';
 
     oldOutput = output;
     return output;
