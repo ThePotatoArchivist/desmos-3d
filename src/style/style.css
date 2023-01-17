@@ -1,0 +1,77 @@
+:root {
+    --bg-color: #ffffff;
+    --fg-color: #111111;
+    --head-color: #000000;
+    --code-bg-color: #f0f0f0;
+    --button-color: #dddddd;
+}
+
+body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--fg-color);
+}
+
+h1, h2 {
+    color: var(--head-color);
+}
+
+pre, code, textarea {
+    background-color: var(--code-bg-color);
+    color: var(--fg-color);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+textarea {
+    border: none;
+}
+
+input[type="submit"] {
+    background-color: var(--button-color);
+    color: var(--fg-color);
+    padding: 5px;
+    border-radius: 10px;
+    border: none;
+}
+
+input[type="submit"]:hover {
+    filter: brightness(1.1);
+}
+
+input[type="submit"]:active {
+    filter: brightness(0.9);
+}
+
+.columns {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.column-1 {
+    flex-grow: 1;
+    max-width: 550px;
+}
+
+.column-2 {
+    flex-basis: 500px;
+    flex-grow: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #111111;
+        --fg-color: #eeeeee;
+        --head-color: #ffffff;
+        --code-bg-color: #222222;
+        --button-color: #333333;
+    }
+
+    input[type="submit"]:hover {
+        filter: brightness(1.25);
+    }
+
+    input[type="submit"]:active {
+        filter: brightness(0.85);
+    }
+}

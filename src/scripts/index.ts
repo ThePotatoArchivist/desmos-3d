@@ -1,5 +1,3 @@
-import fs from 'fs';
-
 function hexToRgb(hex: string): { r: number, g: number, b: number } | null {
     let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result ? {
@@ -10,10 +8,11 @@ function hexToRgb(hex: string): { r: number, g: number, b: number } | null {
 }
 
 let oldData: string;
+let oldOutput: string;
 
-function genOutput(data: string): void {
+function genOutput(data: string): string {
     if (data == oldData) {
-        return;
+        return oldOutput;
     }
     oldData = data;
 
@@ -49,8 +48,22 @@ function genOutput(data: string): void {
     output += 'C=\\left[' + colorList.join(',') + '\\right]';
     output += 'O_{p}=\\left[' + opacities.join(',') + '\\right]';
     output += ''; // Separate outputs with a space
+
+    oldOutput = output;
+    return output;
 }
 
-fs.watch('in.txt', genOutput);
+interface ProcessorFormElements extends HTMLFormControlsCollection {
+    input: HTMLTextAreaElement;
+    output: HTMLTextAreaElement;
+}
 
-fs.readFile('./in.txt', 'utf8', (err: any, data: string): void => genOutput(data))
+document.getElementById('form')!.addEventListener('submit', (event) => {
+    const controlElements = <ProcessorFormElements>(<HTMLFormElement>event.target).elements;
+    controlElements.output.value = genOutput(controlElements.input.value);
+    event.preventDefault();
+});
+
+document.getElementById('output')!.addEventListener('focus', (event) => {
+    (<HTMLTextAreaElement>event.target).select();
+})

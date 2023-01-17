@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="style/style.css">
+        <title>Desmos Point Converter</title>
+    </head>
+    <body>
+        <h1>Desmos 3D Point Converter</h1>
+        <div class="columns">
+            <form id="form" class="column-1">
+                <h2>Processor</h2>
+                <p>Input polygons here</p>
+                <p>(Saving to a separate file is reccommended)</p>
+                <p><textarea name="input" cols="20" rows="20"></textarea></p>
+                <input type="submit" value="&#8595; Convert to Desmos">
+                <p>Copy and paste this into Desmos</p>
+                <p><textarea id="output" name="output" cols="50" rows="10" readonly></textarea></p>
+            </form>
+            <div class="column-2">
+                <h2>Syntax</h2>
+                <p>The input can have as many lines as your computer can handle. Blank lines are ignored.</p>
+                <p>Comments:</p>
+                <pre>
+# Comment
+#Comment </pre>
+                <p>Polygons:</p>
+                <pre>[2 or more point indexes] [hex color] [opacity]</pre>
+                <p>For example:</p>
+                <pre>22 31 54 #ff0000 1</pre>
+                <p>Show the Desmos folder <code>[DEBUG:] Show Points</code> to get the point indexes</p>
+            </div>
+        </div>
+        <script src="scripts/index.js"></script>
+    </body>
+</html>
